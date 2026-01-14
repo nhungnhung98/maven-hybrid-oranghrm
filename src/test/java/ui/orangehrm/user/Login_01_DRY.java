@@ -57,16 +57,20 @@ public class Login_01_DRY {
 
     }
     @Test
-    public void Login_04_Valid_Usser_Password() {
+    public void Login_04_Valid_User_Password(){
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
         driver.findElement(By.cssSelector("input[name='username']")).sendKeys("Admin");
         driver.findElement(By.cssSelector("input[name='password']")).sendKeys("admin123");
         driver.findElement(By.cssSelector("button.orangehrm-login-button")).click();
 
-        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#ctl00_ContentPlaceholder1_Panel1")));
-        Assert.assertEquals(driver.findElement(By.xpath("//h6[@class='oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module']")).getText(),"Dashboard");
+        Assert.assertTrue(isAllLoadingSprinnerInvisible());
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.oxd-topbar-header-title h6")).getText(),"Dashboard");
+    }
 
+    public boolean isAllLoadingSprinnerInvisible(){
+        return  new WebDriverWait(driver, Duration.ofSeconds(30)).
+                until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.cssSelector("div.oxd-loading-spinner"))));
     }
 
 
