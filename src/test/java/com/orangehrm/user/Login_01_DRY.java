@@ -1,4 +1,4 @@
-package ui.orangehrm.user;
+package com.orangehrm.user;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,7 +20,7 @@ public class Login_01_DRY {
     public void beforeClass() {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
 
     }
