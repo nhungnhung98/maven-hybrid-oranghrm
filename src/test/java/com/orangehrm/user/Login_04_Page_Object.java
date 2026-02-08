@@ -42,17 +42,17 @@ public class Login_04_Page_Object extends BaseTest {
         loginPage.clickToLoginButton();
 
         //Action of Dashboard
-        dashboardPage= new DashboardPageObject();
+        dashboardPage= new DashboardPageObject(driver);
         dashboardPage.clickToPIMModule();
 
         //Action of Employee List
-        employeeListPage = new EmployeeListPageObject();
+        employeeListPage = new EmployeeListPageObject(driver);
         employeeListPage.clickToAddEmployeeButton();
 
         //Action of Add Employee
-        addEmployeePage =new AddEmployeePageObject();
-        addEmployeePage.enterToFirstNameTextbox();
-        addEmployeePage.enterToLastNameTextbox();
+        addEmployeePage =new AddEmployeePageObject(driver);
+        addEmployeePage.enterToFirstNameTextbox("");
+        addEmployeePage.enterToLastNameTextbox("");
         addEmployeePage.getEmployeeID();
         employeeID = addEmployeePage.getEmployeeID();
         addEmployeePage.clickToSaveButton();

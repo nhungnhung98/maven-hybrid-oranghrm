@@ -9,6 +9,14 @@ public class LoginPageObject extends BasePage {
 
     //Hàm khởi tạo(Constructor method)
     //Map driver từ test class qua Base Object class
+    public LoginPageObject(WebDriver driver){
+        // Trong TH 2 biến cùng tên
+        // 1 biến là global, 1 biến là local
+        // Nếu không dùng từ khoá this nó sẽ luôn ưu tiên biến local
+        this.driver=driver;
+    }
+
+
     //Sẽ được chạy đầu tiên khi class được gọi tới
     // Nếu không viết hàm khởi tạo thì trình biên dịch sẽ tạo ra cho class này 1 hàm khởi tạo rỗng
     // Nếu viết thì nó sẽ dùng hàm do mình define(User Define)
