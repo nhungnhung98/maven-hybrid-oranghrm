@@ -7,6 +7,10 @@ import pageUIs.AddEmployeePageUI;
 public class AddEmployeePageObject extends BasePage {
     private WebDriver driver;
 
+    public AddEmployeePageObject(WebDriver driver) {
+        super();
+    }
+
     public void AddEmployeePageObject(WebDriver driver) {
         this.driver=driver;
     }

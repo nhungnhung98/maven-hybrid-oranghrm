@@ -22,14 +22,21 @@ public class Login_04_Page_Object extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailPageObject personalDetailPage;
-    private String employeeID;
+    private String employeeID, adminUsername, adminPassword, employeeFirstName, employeeLastName;
 
 
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName) {
         driver=getBrowserDriver(appUrl,browserName);
-        loginPage =new LoginPageObject();
+
+        //Mở URL ra thì nó sẽ mở ra trang Login
+        loginPage =new LoginPageObject(driver);
+
+        adminUsername = "Admin";
+        adminPassword = "admin123";
+        employeeFirstName = "John";
+        employeeLastName = "Terry";
 
  }
 
@@ -37,8 +44,8 @@ public class Login_04_Page_Object extends BaseTest {
     public void Employee_01_CreateNewEmployee() {
 
         //Action of Login
-        loginPage.enterToUsernameTextbox("Admin");
-        loginPage.enterToPasswordTextbox("Admin");
+        loginPage.enterToUsernameTextbox(adminUsername);
+        loginPage.enterToPasswordTextbox(adminPassword);
         loginPage.clickToLoginButton();
 
         //Action of Dashboard
@@ -51,19 +58,19 @@ public class Login_04_Page_Object extends BaseTest {
 
         //Action of Add Employee
         addEmployeePage =new AddEmployeePageObject(driver);
-        addEmployeePage.enterToFirstNameTextbox("");
-        addEmployeePage.enterToLastNameTextbox("");
+        addEmployeePage.enterToFirstNameTextbox(employeeFirstName);
+        addEmployeePage.enterToLastNameTextbox(employeeLastName);
         addEmployeePage.getEmployeeID();
         employeeID = addEmployeePage.getEmployeeID();
         addEmployeePage.clickToSaveButton();
 
-        personalDetailPage= new PersonalDetailPageObject();
-        Assert.assertEquals(personalDetailPage.getFirsNameTextboxValue(),"");
-        Assert.assertEquals(personalDetailPage.getLastNameTextboxvalue(),"");
+        personalDetailPage= new PersonalDetailPageObject(driver);
+        Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
+        personalDetailPage.sleepInSecond(2);
+
+        Assert.assertEquals(personalDetailPage.getFirsNameTextboxValue(),employeeFirstName);
+        Assert.assertEquals(personalDetailPage.getLastNameTextboxvalue(),employeeLastName);
         Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(),employeeID);
-
-
-
 
 
 }
