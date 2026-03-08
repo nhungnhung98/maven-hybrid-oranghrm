@@ -1,4 +1,4 @@
-package pageObjects.admin;
+package pageUIs;
 
 public class BasePageUI {
     //orangeHRM
