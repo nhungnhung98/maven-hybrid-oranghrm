@@ -13,7 +13,7 @@
 
 <!--    <test name="Run on CHROME browser">-->
 <!--        <parameter name="browser" value="Chrome"></parameter>-->
-<!--        <classes>-->
+<!--        <classes>--
 <!--            <class name="com.orangehrm.user.Login_03_Multiple_Browser"/>-->
 
 <!--        </classes>-->
