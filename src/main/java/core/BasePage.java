@@ -6,7 +6,10 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.admin.*;
 import pageUIs.BasePageUI;
+import pageUIs.ContactDetailPageUI;
+import pageUIs.PersonalDetailpageUI;
 
 import java.time.Duration;
 import java.util.List;
@@ -344,9 +347,37 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXPath(locator)));
     }
     public boolean isLoadingSpinnerDisappear(WebDriver driver) {
-        return waitListElementInvisible(driver, BasePageUI.SPINNER_ICON);
+            return waitListElementInvisible(driver, BasePageUI.SPINNER_ICON);
     }
 
+
+    // 9 page có duy nhất 9 hàm không trùng lặp ở bất kì vị trí nào
+    public ContactDetailpageObject openContactDetailPage(WebDriver driver) {
+        waitElementClickable(driver, BasePageUI.CONTACT_DETAIL_LINK);
+        clickToElement(driver, BasePageUI.CONTACT_DETAIL_LINK);
+
+        return PageGeneratorGeneric.getPage(ContactDetailpageObject .class,driver);
+    }
+
+    public JobPageObject openJobPage(WebDriver driver){
+        waitElementClickable(driver, BasePageUI.JOB_LINK);
+        clickToElement(driver, BasePageUI.JOB_LINK);
+
+        return PageGeneratorGeneric.getPage(JobPageObject.class,driver);
+    }
+
+    public PersonalDetailPageObject openPersonalDetailPage(WebDriver driver){
+        waitElementClickable(driver, BasePageUI.DEPENDENT_LINK);
+        clickToElement(driver, BasePageUI.DEPENDENT_LINK);
+
+        return PageGeneratorGeneric.getPage(PersonalDetailPageObject.class,driver);
+    }
+    public DependentsPageObject openDependentPage(WebDriver driver){
+        waitElementClickable(driver, BasePageUI.DEPENDENT_LINK);
+        clickToElement(driver, BasePageUI.DEPENDENT_LINK);
+
+        return PageGeneratorGeneric.getPage(DependentsPageObject.class,driver);
+    }
 
 
     private static final int SHORT_TIMEOUT=10;
