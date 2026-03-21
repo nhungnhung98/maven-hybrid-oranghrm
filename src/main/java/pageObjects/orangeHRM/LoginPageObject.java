@@ -1,0 +1,46 @@
+package pageObjects.orangeHRM;
+
+import core.BasePage;
+import org.openqa.selenium.WebDriver;
+import pageObjects.PageGenerator;
+import pageUIs.orangeHRM.LoginPageUI;
+
+public class LoginPageObject extends BasePage {
+    private WebDriver driver;
+
+    //Hàm khởi tạo(Constructor method)
+    //Map driver từ test class qua Base Object class
+    public LoginPageObject(WebDriver driver){
+        // Trong TH 2 biến cùng tên
+        // 1 biến là global, 1 biến là local
+        // Nếu không dùng từ khoá this nó sẽ luôn ưu tiên biến local
+        this.driver=driver;
+    }
+
+
+    //Sẽ được chạy đầu tiên khi class được gọi tới
+    // Nếu không viết hàm khởi tạo thì trình biên dịch sẽ tạo ra cho class này 1 hàm khởi tạo rỗng
+    // Nếu viết thì nó sẽ dùng hàm do mình define(User Define)
+    // Cùng tên với tên class chứa nó
+    //Không có giá trị trả về
+    //Có 1 hoặc nhiều tham số/có 1 hoặc nhiều hàm khởi tạo
+    // Thể hiện cho tính chất đa hình trong OOP
+
+    public void enterToUsernameTextbox(String username) {
+        waitElementVisible(driver,LoginPageUI.USERNAME_TEXTBOX);
+        sendkeyToElement(driver, LoginPageUI.USERNAME_TEXTBOX, username);
+
+    }
+
+    public void enterToPasswordTextbox(String password) {
+        waitElementVisible(driver,LoginPageUI.PASSWORD_TEXTBOX);
+        sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
+
+    }
+
+    public DashboardPageObject clickToLoginButton() {
+        waitElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
+        clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+        return PageGenerator.getPage(DashboardPageObject.class,driver);
+    }
+}

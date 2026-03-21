@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class BaseTest {
-    private WebDriver driver;
+    public WebDriver driver;
 
     protected WebDriver getBrowserDriver(String appUrl,String browserName){
         switch (browserName){
