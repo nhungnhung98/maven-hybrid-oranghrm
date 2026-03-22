@@ -6,6 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class BaseTest {
     public WebDriver driver;
@@ -29,4 +30,11 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         return driver;
     }
+
+    protected int getRandomNumber(){
+
+        return new Random().nextInt(999999);
+
+    }
+
 }

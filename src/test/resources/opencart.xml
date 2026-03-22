@@ -5,8 +5,8 @@
     <parameter name="userUrl" value="http://localhost:88/opencart"></parameter>
     <parameter name="adminUrl" value="http://localhost:88/opencart/adm"></parameter>
 
-    <test name="Run on FIREFOX browser">
-        <parameter name="browser" value="firefox"></parameter>
+    <test name="Run on CHROME browser">
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="com.opencart.Level09_SwitchUrl"/>
         </classes>

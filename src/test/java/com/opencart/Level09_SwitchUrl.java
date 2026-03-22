@@ -2,6 +2,7 @@ package com.opencart;
 
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -12,63 +13,87 @@ import pageObjects.openCart.admin.AdminDashboardPO;
 import pageObjects.openCart.admin.AdminLoginPO;
 import pageObjects.openCart.user.UserHomePO;
 import pageObjects.openCart.user.UserLoginPO;
+import pageObjects.openCart.user.UserMyAccountPO;
 import pageObjects.openCart.user.UserRegisterPO;
 
 
 public class Level09_SwitchUrl extends BaseTest {
-    private String userURL, adminURL;
 
-    @Parameters({"browser","adminUrl","userUrl"})
+    @Parameters({"browser", "adminUrl", "userUrl"})
     @BeforeClass
-    public void beforeClass(String browserName,String userURL,String adminURL) {
+    public void beforeClass(String browserName, String userURL, String adminURL) {
         //Gán dữ liệu
-        this.userURL=userURL;
-        this.adminURL=adminURL;
+        this.userURL = userURL;
+        this.adminURL = adminURL;
 
-        //Mử browser lên là trang user
-         driver = getBrowserDriver(userURL, browserName);
-         userHomePage= PageGenerator.getPage(UserHomePO.class, driver);
+        adminUser = "automationfc";
+        adminPassword = "Auto@@123";
 
- }
+        userFirstname = "Nhung";
+        userLastname = "Nguyen";
+        userEmailAddress = "nguyennhung" + getRandomNumber() + "@gmail.com";
+        userPassword = "Auto@@123";
+
+        //Mở browser lên là trang user
+        driver = getBrowserDriver(userURL, browserName);
+        userHomePage = PageGenerator.getPage(UserHomePO.class, driver);
+
+    }
 
     @Test
     public void OpenCart_01_Logging() {
-        userLoginPage=userHomePage.clickToMyAccount();
+        userLoginPage = userHomePage.clickToMyAccount();
 
-        userRegisterPage=userHomePage.clickToContinueButton();
+        userRegisterPage = userLoginPage.clickToContinueButton();
 
-        userRegisterPage.enterToFirstName("");
-        userRegisterPage.enterToLastName("");
-        userRegisterPage.enterToEmail("");
-        userRegisterPage.enterToPassWord("");
+        userRegisterPage.enterToFirstName(userFirstname);
+        userRegisterPage.enterToLastName(userLastname);
+        userRegisterPage.enterToEmail(userEmailAddress);
+        userRegisterPage.enterToPassWord(userPassword);
         userRegisterPage.acceptPrivacyCheckbox();
         userRegisterPage.clickContinueButton();
 
+        Assert.assertTrue(userRegisterPage.isSuccessMessageDisplayed());
+
         userRegisterPage.clickToLogoutLink();
 
-        userHomePage= userRegisterPage.clickToLogoutLinkAtUserSite(driver);
+        userHomePage = userRegisterPage.clickToLogoutLinkAtUserSite(driver);
 
+        //User-> Admin
         adminLoginPage = userHomePage.openAdminSite(driver, adminURL);
 
-        adminLoginPage.enterToUsername("");
-        adminLoginPage.enterPassword("");
-        adminDashboardPage= adminLoginPage.clickToLoginButton();
+        adminLoginPage.enterToUsername(adminUser);
+        adminLoginPage.enterPassword(adminPassword);
+        adminDashboardPage = adminLoginPage.clickToLoginButton();
 
-        adminCustomerPage= adminDashboardPage.openCustomerPage(driver);
-        adminLoginPage= adminCustomerPage.clickToLogoutLinkAtAdminSite(driver);
+        adminCustomerPage = adminDashboardPage.openCustomerPage(driver);
+        adminLoginPage = adminCustomerPage.clickToLogoutLinkAtAdminSite(driver);
 
-        userHomePage=adminLoginPage.openUserSite(driver,userURL);
+        //Admin-> User
+        userHomePage = adminLoginPage.openUserSite(driver, userURL);
 
-        adminLoginPage=userLoginPage.openAdminSite(driver,adminURL);
+        userLoginPage = userHomePage.clickToMyAccount();
 
-}
+        userLoginPage.enterToEmailAddressTextbox(userEmailAddress);
+        userLoginPage.enterToPasswordTextbox(userPassword);
+
+        userMyAccountPO = userLoginPage.clickToLoginButton();
+
+        Assert.assertTrue(userMyAccountPO.isMyAccountPageDisplayed());
+
+        //user -> Admin
+        adminLoginPage=userMyAccountPO.openAdminSite(driver,adminURL);
+
+        adminLoginPage.enterToUsername(adminUser);
+        adminLoginPage.enterPassword(adminPassword);
+        adminDashboardPage = adminLoginPage.clickToLoginButton();
+
+    }
+
     @Test
     public void OpenCart_02_Without_Logging() {
 
     }
-
-
-
 
 
     @AfterClass
@@ -82,6 +107,10 @@ public class Level09_SwitchUrl extends BaseTest {
     private UserLoginPO userLoginPage;
     private UserHomePO userHomePage;
     private UserRegisterPO userRegisterPage;
+    private String adminUser, adminPassword;
+    private String userURL, adminURL;
+    private String userFirstname, userLastname, userEmailAddress, userPassword;
+    private UserMyAccountPO userMyAccountPO;
 
 
 }

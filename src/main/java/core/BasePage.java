@@ -10,12 +10,11 @@ import pageObjects.PageGenerator;
 import pageObjects.admin.*;
 import pageObjects.openCart.admin.AdminLoginPO;
 import pageObjects.openCart.user.UserHomePO;
-import pageUIs.orangeHRM.BasePageUI;
+import pageUIs.BasePageUI;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
-import pageObjects.openCart.admin.AdminLoginPO;
 
 public class BasePage {
     // 1. Access Modifier
@@ -355,15 +354,16 @@ public class BasePage {
 
     //OpenCart
     public UserHomePO clickToLogoutLinkAtUserSite(WebDriver driver){
-        //Wait Clickable
-        //Click
-        //Wait Clickable Continue Button
-        //Click vao Continue Button
+        waitElementClickable(driver, BasePageUI.USER_MY_ACCOUNT_HEADER);
+        clickToElement(driver, BasePageUI.USER_MY_ACCOUNT_HEADER);
+
+        waitElementClickable(driver, BasePageUI.USER_LOGOUT_LINK_ITEM);
+        clickToElement(driver, BasePageUI.USER_LOGOUT_LINK_ITEM);
         return PageGenerator.getPage(UserHomePO.class, driver);
     }
     public AdminLoginPO clickToLogoutLinkAtAdminSite(WebDriver driver) {
-        //Wait Clickable Continue Button
-        //Click vao Continue Button
+        waitElementClickable(driver, BasePageUI.ADMIN_LOGOUT_LINK_ITEM);
+        clickToElement(driver, BasePageUI.ADMIN_LOGOUT_LINK_ITEM);
 
         return PageGenerator.getPage(AdminLoginPO.class, driver);
     }
