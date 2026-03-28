@@ -1,7 +1,6 @@
 package pageObjects.openCart.user;
 
 import core.BasePage;
-import core.BaseTest;
 import org.openqa.selenium.WebDriver;
 import pageObjects.PageGenerator;
 import pageUIs.openCart.user.UserHomePageUI;
@@ -13,7 +12,7 @@ public class UserHomePO extends BasePage {
         this.driver = driver;
     }
 
-    public UserLoginPO clickToMyAccount() {
+    public UserLoginPO clickToMyAccountAtFooter() {
         scrollToElementOnTop(driver, UserHomePageUI.FOOTER_MY_ACCOUNT_LINK);
         waitElementClickable(driver, UserHomePageUI.FOOTER_MY_ACCOUNT_LINK);
         clickToElement(driver, UserHomePageUI.FOOTER_MY_ACCOUNT_LINK);

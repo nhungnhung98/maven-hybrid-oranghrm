@@ -8,7 +8,7 @@
     <test name="Run on CHROME browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.opencart.Level09_SwitchUrl"/>
+            <class name="com.opencart.Level09_SwitchUrl_Role"/>
         </classes>
     </test>
 

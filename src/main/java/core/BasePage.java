@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.PageGenerator;
-import pageObjects.admin.*;
 import pageObjects.openCart.admin.AdminLoginPO;
 import pageObjects.openCart.user.UserHomePO;
 import pageUIs.BasePageUI;
@@ -368,16 +367,36 @@ public class BasePage {
         return PageGenerator.getPage(AdminLoginPO.class, driver);
     }
 
-    public AdminLoginPO openAdminSite(WebDriver driver,String adminURL) {
+    public void openAdminSite(WebDriver driver,String adminURL) {
         openPageUrl(driver,adminURL);
-        return PageGenerator.getPage(AdminLoginPO.class, driver);
 
+    }
+
+    public boolean isElementDisplayed(WebDriver driver, String locator) {
+        return getWebElement(driver, locator).isDisplayed();
     }
 
     public UserHomePO openUserSite(WebDriver driver,String userURL) {
         openPageUrl(driver,userURL);
         return PageGenerator.getPage(UserHomePO.class, driver);
 
+    }
+
+    public void openUrlByNewTAB(WebDriver driver, String url){
+        driver.switchTo().newWindow(WindowType.TAB).get(url);
+    }
+    public void openUrlByNewWindow(WebDriver driver, String url){
+        driver.switchTo().newWindow(WindowType.WINDOW).get(url);
+    }
+
+    public String getCurrentWindowID(WebDriver driver){
+        return driver.getWindowHandle();
+    }
+
+    public UserHomePO openHomeLogo(WebDriver driver){
+        waitElementClickable(driver, BasePageUI.USER_HOME_LOGO);
+        clickToElement(driver,BasePageUI.USER_HOME_LOGO);
+        return PageGenerator.getPage(UserHomePO.class, driver);
     }
 
 
