@@ -7,25 +7,9 @@
     <test name="Run on FIREFOX browser">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="com.orangehrm.user."/>
+            <class name="com.orangehrm.Login_11_By_Locator"/>
         </classes>
     </test>
-
-<!--    <test name="Run on CHROME browser">-->
-<!--        <parameter name="browser" value="Chrome"></parameter>-->
-<!--        <classes>--
-<!--            <class name="com.orangehrm.Login_03_Multiple_Browser"/>-->
-
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--    <test name="Run on EDGE browser">-->
-<!--        <parameter name="browser" value="Edge"></parameter>-->
-<!--        <classes>-->
-<!--            <class name="com.orangehrm.Login_03_Multiple_Browser"/>-->
-
-<!--        </classes>-->
-<!--    </test>-->
 
 
 </suite>
