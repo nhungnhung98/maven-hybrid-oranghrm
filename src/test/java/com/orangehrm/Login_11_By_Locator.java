@@ -9,7 +9,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.PageGenerator;
 import pageObjects.orangeHRM.*;
-import pageObjects.orangeHRM.editNavigation.ContactDetailpageObject;
+import pageObjects.orangeHRM.editNavigation.ContactDetailPageObject;
 import pageObjects.orangeHRM.editNavigation.DependentsPageObject;
 import pageObjects.orangeHRM.editNavigation.JobPageObject;
 import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
@@ -24,7 +24,7 @@ public class Login_11_By_Locator extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailPageObject personalDetailPage;
-    private ContactDetailpageObject contactDetailPage;
+    private ContactDetailPageObject contactDetailPage;
     private PageGeneratorManager pageGeneratorManager;
     private JobPageObject jobPage;
     private DependentsPageObject dependentsPage;
@@ -82,28 +82,54 @@ public class Login_11_By_Locator extends BaseTest {
 
 }
     @Test
-    public void Employee_02_PageNavigator(){
-//        dashboardPage.openContactDetailPage(driver);
-//        //Từ personal qua Contact
-//        contactDetailPage=personalDetailPage.openContactDetailPage(driver);
-//
-//        // Từ Contact qua Job
-//        jobPage=contactDetailPage.openJobPage(driver);
-//
-//        // Từ Job qua Dependent
-//        dependentsPage=jobPage.openDependentPage(driver);
-//
-//        //Từ Dependent qua Personal
-//        personalDetailPage=dependentsPage.openPersonalDetailPage(driver);
-//
-//        //Từ Personal qua Job
-//        personalDetailPage.openJobPage(driver);
-//
-//        contactDetailPage=jobPage.openContactDetailPage(driver);
-//        dependentsPage= contactDetailPage.openDependentPage(driver);
+    public void Employee_02_Dynamic_Page(){
+         // Từ Personal qua Contact
+        contactDetailPage = (ContactDetailPageObject) personalDetailPage.openEditNavigatorPageByName("Contact Details");
 
+        // Từ Contact qua Job
+        jobPage = (JobPageObject) contactDetailPage.openEditNavigatorPageByName("Job");
+
+        // Từ Job qua Dependent
+        dependentsPage = (DependentsPageObject) jobPage.openEditNavigatorPageByName("Dependents");
+
+        // Từ Dependent qua Personal
+        personalDetailPage = (PersonalDetailPageObject) dependentsPage.openEditNavigatorPageByName("Personal Details");
+
+        // Từ Personal qua Job
+        jobPage = (JobPageObject) personalDetailPage.openEditNavigatorPageByName("Job");
+
+        contactDetailPage = (ContactDetailPageObject) jobPage.openEditNavigatorPageByName("Contact Details");
+
+        dependentsPage = (DependentsPageObject) contactDetailPage.openEditNavigatorPageByName("Dependents");
     }
+    @Test
+    public void Employee_03_Dynamic_Page() {
+        // Từ Personal qua Contact
+        personalDetailPage.openEditNavigatorByName("Contact Details");
+        contactDetailPage = PageGenerator.getPage(ContactDetailPageObject.class, driver);
 
+        // Từ Contact qua Job
+        contactDetailPage.openEditNavigatorByName("Job");
+        jobPage = PageGenerator.getPage(JobPageObject.class, driver);
+
+        // Từ Job qua Dependent
+        jobPage.openEditNavigatorByName("Dependents");
+        dependentsPage = PageGenerator.getPage(DependentsPageObject.class, driver);
+
+        // Từ Dependent qua Personal
+        dependentsPage.openEditNavigatorByName("Personal Details");
+        personalDetailPage = PageGenerator.getPage(PersonalDetailPageObject.class, driver);
+
+        // Từ Personal qua Job
+        personalDetailPage.openEditNavigatorByName("Job");
+        jobPage = PageGenerator.getPage(JobPageObject.class, driver);
+
+        jobPage.openEditNavigatorByName("Contact Details");
+        contactDetailPage = PageGenerator.getPage(ContactDetailPageObject.class, driver);
+
+        contactDetailPage.openEditNavigatorByName("Dependents");
+        dependentsPage = PageGenerator.getPage(DependentsPageObject.class, driver);
+    }
 
     @AfterClass
     public void afterClass() {

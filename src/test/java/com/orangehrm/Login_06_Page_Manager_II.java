@@ -11,7 +11,7 @@ import pageObjects.orangeHRM.AddEmployeePageObject;
 import pageObjects.orangeHRM.DashboardPageObject;
 import pageObjects.orangeHRM.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
-import pageObjects.orangeHRM.editNavigation.ContactDetailpageObject;
+import pageObjects.orangeHRM.editNavigation.ContactDetailPageObject;
 import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 
 
@@ -24,7 +24,7 @@ public class Login_06_Page_Manager_II extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailPageObject personalDetailPage;
-    private ContactDetailpageObject contactDetailPage;
+    private ContactDetailPageObject contactDetailPage;
     private String employeeID, adminUsername, adminPassword, employeeFirstName, employeeLastName;
 
 
