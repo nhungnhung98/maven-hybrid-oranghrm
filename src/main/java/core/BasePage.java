@@ -513,7 +513,9 @@ public class BasePage {
         clickToElement(driver,BasePageUI.USER_HOME_LOGO);
         return PageGenerator.getPage(UserHomePO.class, driver);
     }
-
+    public void refreshToPage(WebDriver driver) {
+        driver.navigate().refresh();
+    }
 
 
     private static final int SHORT_TIMEOUT=10;

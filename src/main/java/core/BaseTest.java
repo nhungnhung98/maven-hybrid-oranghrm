@@ -36,5 +36,10 @@ public class BaseTest {
         return new Random().nextInt(999999);
 
     }
+    protected void closeBrowser(WebDriver driver) {
+        if (!(null == driver)) {
+            driver.quit();
+        }
+    }
 
 }
