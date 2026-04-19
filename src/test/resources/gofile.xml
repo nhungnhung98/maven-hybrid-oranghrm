@@ -2,13 +2,13 @@
 
 <suite name="Data table - UI Automation Testing" verbose="1">
 
-    <parameter name="userUrl" value="https://blueimp.github.io/jQuery-File-Upload/"></parameter>
+    <parameter name="userUrl" value="https://gofile.io/home"></parameter>
 
 
     <test name="Run on CHROME browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.jquery.Level12_DataTable"/>
+            <class name="com.gofile.Level_13_Upload_File"/>
         </classes>
     </test>
 

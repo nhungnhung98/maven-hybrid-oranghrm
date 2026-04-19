@@ -10,6 +10,7 @@ import pageObjects.PageGenerator;
 import pageObjects.openCart.admin.AdminLoginPO;
 import pageObjects.openCart.user.UserHomePO;
 import pageUIs.BasePageUI;
+import pageUIs.jquery.HomePageUI;
 
 import java.time.Duration;
 import java.util.List;
@@ -207,6 +208,15 @@ public class BasePage {
         return driver.findElements(getByLocator(locator));
     }
 
+
+    protected WebElement getWebElement(WebDriver driver, String locator, String... restValue) {
+        return driver.findElement(getByLocator(castParameter(locator, restValue)));
+    }
+
+    protected List<WebElement> getListElement(WebDriver driver, String locator, String... restValue) {
+        return driver.findElements(getByLocator(castParameter(locator, restValue)));
+    }
+
     public void selectItemInDropDown(WebDriver driver, String locator, String valueItem) {
         new Select(getWebElement(driver, locator)).selectByVisibleText(valueItem);
     }
@@ -291,6 +301,10 @@ public class BasePage {
 
     public int getElementsNumber(WebDriver driver,String locator){
         return getListElement(driver,locator).size();
+    }
+
+    public int getListElementNumber(WebDriver driver, String locator, String... restValue) {
+        return getListElement(driver, castParameter(locator, restValue)).size();
     }
 
     public void checkToCheckbox(WebDriver driver,String locator){
@@ -426,7 +440,9 @@ public class BasePage {
     public WebElement waitElementClickable(WebDriver driver, String locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
     }
-
+    public WebElement waitElementClickable(WebDriver driver, WebElement element) {
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(element));
+    }
     public WebElement waitElementClickable(WebDriver driver, String locator, String... restValue) {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(castParameter(locator, restValue))));
     }
@@ -457,6 +473,16 @@ public class BasePage {
     public List<WebElement> waitListElementPresence(WebDriver driver, String locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(locator)));
     }
+
+    public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+        String filePath = GlobalContants.UPLOAD_PATH;
+        String fullFileName = "";
+        for (String file : fileNames) {
+            fullFileName = fullFileName + filePath + file + "\n";
+        }
+        getWebElement(driver, BasePageUI.UPLOAD_FILE_TYPE).sendKeys(fullFileName.trim());
+    }
+
     public boolean isLoadingSpinnerDisappear(WebDriver driver) {
             return waitListElementInvisible(driver, BasePageUI.SPINNER_ICON);
     }
@@ -517,6 +543,23 @@ public class BasePage {
         driver.navigate().refresh();
     }
 
+    public boolean isFileLoadedSuccess(String fileName) {
+        waitElementVisible(driver, HomePageUI.IS_FILE_LOADED, fileName);
+        return isElementDisplayed(driver, HomePageUI.IS_FILE_LOADED, fileName);
+    }
+
+    public void clickStartUpload() {
+        List<WebElement> startButtons = getListElement(driver, HomePageUI.START_UPLOAD_BUTTON);
+        for (WebElement startButton:startButtons){
+            waitElementClickable(driver, startButton).click();
+            sleepInSecond(2);
+        }
+    }
+
+    public boolean isFileUploadedSuccess(String fileName) {
+        waitElementVisible(driver, HomePageUI.IS_FILE_UPLOADED, fileName);
+        return isElementDisplayed(driver, HomePageUI.IS_FILE_UPLOADED, fileName);
+    }
 
     private static final int SHORT_TIMEOUT=10;
     private static final int LONG_TIMEOUT=30;

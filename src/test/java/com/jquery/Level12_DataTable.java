@@ -17,6 +17,8 @@ import pageObjects.openCart.user.UserLoginPO;
 import pageObjects.openCart.user.UserMyAccountPO;
 import pageObjects.openCart.user.UserRegisterPO;
 
+import java.util.List;
+
 
 public class Level12_DataTable extends BaseTest {
 
@@ -83,8 +85,27 @@ public class Level12_DataTable extends BaseTest {
 
         homePage.clickLoadDataButton();
 
-    }
+        homePage.enterToTextboxByColumnNameAndRowIndex("Contact Person","3","Putin");
+        homePage.enterToTextboxByColumnNameAndRowIndex("Company","3","Russia");
+        homePage.enterToTextboxByColumnNameAndRowIndex("Order Placed","3","12");
+        homePage.selectToDropdownByColumnNameAndRowIndex("Country","3","Hong Kong");
+        homePage.checkToCheckboxByColumnNameAndRowIndex("NPO?","3");
+        homePage.actionToRowByRowIndex("3","Move Up");
+        homePage.sleepInSecond(3);
 
+        homePage.enterToTextboxByColumnNameAndRowIndex("Contact Person","6","Trump");
+        homePage.enterToTextboxByColumnNameAndRowIndex("Company","6","USA");
+        homePage.enterToTextboxByColumnNameAndRowIndex("Order Placed","6","19");
+        homePage.selectToDropdownByColumnNameAndRowIndex("Country","6","United States");
+        homePage.checkToCheckboxByColumnNameAndRowIndex("NPO?","6");
+        homePage.actionToRowByRowIndex("6","Insert");
+        homePage.sleepInSecond(3);
+    }
+    @Test
+    public void Table_05_Get_All_Value() {
+        List<String> columnActualValue =  homePage.getColumnAllValueByColumnName("Country");
+        System.out.println(columnActualValue.size());
+    }
     @AfterClass
     public void afterClass() {
         closeBrowser(driver);

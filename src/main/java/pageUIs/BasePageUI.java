@@ -14,4 +14,6 @@ public class BasePageUI {
 
 //    public static final String USER_HOME_LOGO = "css=div#logo>a";
 
+    //JQuery
+    public static final String UPLOAD_FILE_TYPE="css=input[type='file']";
 }
