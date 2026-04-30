@@ -4,6 +4,10 @@
 
     <parameter name="browser" value="http://localhost:88/orangehrm"></parameter>
 
+    <listeners>
+        <listener class-name="core.MethodListener"></listener>
+    </listeners>
+
     <test name="Run on FIREFOX browser">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
