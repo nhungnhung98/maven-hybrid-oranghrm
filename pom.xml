@@ -28,18 +28,31 @@
             <artifactId>selenium-support</artifactId>
             <version>4.39.0</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.11.0</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>3.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/com.aventstack/chaintest-core -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>chaintest-core</artifactId>
+            <version>1.0.12</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

@@ -11,7 +11,7 @@
     <test name="Run on FIREFOX browser">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="com.orangehrm.Login_11_By_Locator"/>
+            <class name="com.orangehrm.Login_14_Extent_3"/>
         </classes>
     </test>
 

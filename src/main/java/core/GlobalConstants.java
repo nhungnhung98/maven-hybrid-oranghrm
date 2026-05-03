@@ -2,10 +2,11 @@ package core;
 
 import java.io.File;
 
-public class GlobalContants {
+public class GlobalConstants {
     //System info
     public static final String PROJECT_PATH = System.getProperty("user.dir");
     public static final String OS_NAME = System.getProperty("os.name");
+    public static final String JAVA_VERSION = System.getProperty("java.version");
 
     //App info user
     public static final String DEV_USER_URL = "http://localhost:88/opencart/upload/";

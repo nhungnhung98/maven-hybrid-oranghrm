@@ -73,8 +73,8 @@ public class Login_06_Page_Manager_II extends BaseTest {
         Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
         personalDetailPage.sleepInSecond(2);
 
-        Assert.assertEquals(personalDetailPage.getFirsNameTextboxValue(),employeeFirstName);
-        Assert.assertEquals(personalDetailPage.getLastNameTextboxvalue(),employeeLastName);
+        Assert.assertEquals(personalDetailPage.getFirstNameTextboxValue(),employeeFirstName);
+        Assert.assertEquals(personalDetailPage.getLastNameTextboxValue(),employeeLastName);
         Assert.assertEquals(personalDetailPage.getEmployeeIDTextboxValue(),employeeID);
 
 }

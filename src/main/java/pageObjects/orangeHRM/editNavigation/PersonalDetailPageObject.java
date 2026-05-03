@@ -1,6 +1,5 @@
 package pageObjects.orangeHRM.editNavigation;
 
-import core.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.orangeHRM.editNaviagation.PersonalDetailpageUI;
 
@@ -13,12 +12,12 @@ public class PersonalDetailPageObject extends EditNavigatorPageObject {
         this.driver = driver;
     }
 
-    public String getFirsNameTextboxValue() {
+    public String getFirstNameTextboxValue() {
         waitElementVisible(driver, PersonalDetailpageUI.FIRST_NAME_TEXTBOX);
         return getElementDOMAttribute(driver, PersonalDetailpageUI.FIRST_NAME_TEXTBOX,"value");
     }
 
-    public String getLastNameTextboxvalue() {
+    public String getLastNameTextboxValue() {
         waitElementVisible(driver, PersonalDetailpageUI.LAST_NAME_TEXTBOX);
         return getElementDOMAttribute(driver, PersonalDetailpageUI.LAST_NAME_TEXTBOX,"value");
 
