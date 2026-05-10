@@ -6,12 +6,13 @@
 
     <listeners>
         <listener class-name="core.MethodListener"></listener>
+        <listener class-name="reportConfig.AllureTestListener"></listener>
     </listeners>
 
     <test name="Run on FIREFOX browser">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="com.orangehrm.Login_14_Extent_3"/>
+            <class name="com.orangehrm.Login_15_ChainTest"/>
         </classes>
     </test>
 
