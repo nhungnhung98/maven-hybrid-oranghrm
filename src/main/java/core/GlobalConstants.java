@@ -40,6 +40,9 @@ public class GlobalConstants {
     // Data test/environment
     public static final String DATA_TEST_PATH = PROJECT_PATH + File.separator + "dataTest" + File.separator;
     public static final String ENVIRONMENT_CONFIG_PATH = PROJECT_PATH + File.separator + "environmentConfig" + File.separator;
-
+    public static final String JIRA_SITE_URL = "https://hongnhung04091998.atlassian.net/";
+    public static final String JIRA_USERNAME = "hongnhung04091990@gmail.com" ;
+    public static final String JIRA_API_KEY ="" ;
+    public static final String JIRA_PROJECT_KEY = "FRAMEWORK";
 
 }

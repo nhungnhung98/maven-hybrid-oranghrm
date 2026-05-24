@@ -6,13 +6,13 @@
 
     <listeners>
         <listener class-name="core.MethodListener"></listener>
-        <listener class-name="reportConfig.AllureTestListener"></listener>
+        <listener class-name="jiraConfigs.JiraListener"></listener>
     </listeners>
 
     <test name="Run on FIREFOX browser">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="com.orangehrm.Login_15_ChainTest"/>
+            <class name="com.orangehrm.Login_17_Jira"/>
         </classes>
     </test>
 
